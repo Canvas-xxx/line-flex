@@ -1,0 +1,9 @@
+<!-- <ng-content select="div"></ng-content> -->
+<div style="width: 100%; height: 100%; background-color: blue; position: relative; overflow: scroll;">
+  <div style="overflow: scroll; height: 100%; width: 100%;">
+    <ng-content select="app-flex-preview"></ng-content>
+  </div>
+  <div style="position: absolute; bottom: 0; width: 100%;">
+    <ng-content select="app-flex-status"></ng-content>
+  </div>
+</div>

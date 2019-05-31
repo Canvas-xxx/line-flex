@@ -1,0 +1,81 @@
+<div style="display: block; width: 300px; height: 100%; margin: 50px auto; overflow: scroll;">
+  <ng-container *ngTemplateOutlet="status === 'OK' && data ? success : null"></ng-container>
+</div>
+
+<ng-template #success>
+  <ng-container *ngTemplateOutlet="data.type === 'bubble' ? bubble : null"></ng-container>
+  <ng-container *ngTemplateOutlet="data.type === 'carousel' ? carousel : null"></ng-container>
+</ng-template>
+
+<ng-template #bubble>
+  <div style="display: flex; flex-direction: column; width: 300px; min-height: 450px; background-color: white; border-radius: 8px; overflow: hidden;">
+    <ng-container *ngTemplateOutlet="data.header ? header : null"></ng-container>
+  </div>
+</ng-template>
+
+<ng-template #carousel>
+  <div style="width: 300px; height: 450px; background-color: green; border-radius: 8px;"></div>
+</ng-template>
+
+<ng-template #header>
+  <div style="display: inherit; padding: 20px;">
+    <ng-container *ngTemplateOutlet="data.header.type === 'box' ? box : null"></ng-container>
+  </div>
+</ng-template>
+
+<ng-template #box>
+  <div class="MdBx" [ngClass]="{'vr': data.header.layout === 'vertical', 'hr': data.header.layout === 'horizontal'}">
+    <ng-container *ngFor="let head of data.header.contents">
+      <ng-container *ngTemplateOutlet="head.type === 'text' ? text : null; context: head"></ng-container>
+      <ng-container *ngTemplateOutlet="head.type === 'separator' ? separator : null;"></ng-container>
+      <ng-container *ngTemplateOutlet="head.type === 'image' ? image : null; context: head"></ng-container>
+      <ng-container *ngTemplateOutlet="head.type === 'button' ? button : null; context: head"></ng-container>
+    </ng-container>
+  </div>
+</ng-template>
+
+<ng-template #text let-text="text">
+  <div class="MdTxt">
+    <p>{{ text }}</p>
+  </div>
+</ng-template>
+
+<ng-template #separator>
+  <div class="fl0 MdSep"></div>
+</ng-template>
+
+<ng-template #image let-url="url">
+  <div class="MdImg ExMd ExFit">
+    <div>
+      <a style="padding-bottom: 100%;">
+        <span [ngStyle]="{'background-image': 'url(' + url + ')'}"></span>
+      </a>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #button let-label="action.label" let-style="style" let-color="color" let-gravity="gravity" let-flex="flex" let-margin="margin">
+  <div class="MdBtn" 
+    [ngClass]="{'ExBtnL': !style, 'ExBtnL': style === 'link', 
+      'ExBtn1': style === 'primary', 
+      'ExBtn2': style === 'secondary',
+      'grvC': gravity === 'center', 
+      'grvB': gravity === 'bottom',
+      'fl1': flex === 1,
+      'fl2': flex === 2,
+      'fl3': flex === 3,
+      'ExLXs': margin === 'xs',
+      'ExLSm': margin === 'sm',
+      'ExLMd': margin === 'md',
+      'ExLLg': margin === 'lg',
+      'ExLXl': margin === 'xl',
+      'ExLXXl': margin === 'xxl'}">
+    <a [ngStyle]="{'background-color': style && style !== 'link' ? color : ''}">
+      <div [ngStyle]="{'color': style && style !== 'link' ? '' : color}">{{ label }}</div>
+    </a>
+  </div>
+</ng-template>
+
+
+
+

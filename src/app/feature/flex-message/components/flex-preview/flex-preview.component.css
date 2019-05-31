@@ -1,0 +1,241 @@
+p {
+    margin: 0;
+}
+
+a {
+    -webkit-touch-callout: none;
+}
+
+.MdBx, [class*="MdSep"], .MdTxt, .MdIco, .MdBtn, .MdImg {
+    -webkit-box-flex: 1;
+    flex: 1 1 auto;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    width: auto;
+    min-width: 0;
+    max-width: 100%;
+}
+
+.T1 .MdBx.hr > div:first-child, .T1 .MdBx.hr > div.mdBxFiller, .T1 .MdBx.hr > div.mdBxSpacer {
+    margin-left: 0;
+}
+
+.ExLXs {
+    margin-left: 2px !important;
+}
+
+.ExLSm {
+    margin-left: 4px !important;
+}
+
+.ExLMd {
+    margin-left: 8px !important;
+}
+
+.ExLLg {
+    margin-left: 16px !important;
+}
+
+.ExLXl {
+    margin-left: 16px !important;
+}
+
+.ExLXXl {
+    margin-left: 20px !important;
+}
+
+/* Box */
+
+.MdBx {
+    overflow: hidden;
+}
+
+.MdBx.hr {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    width: 100%;
+}
+
+.MdBx.vr > div {
+    -webkit-box-flex: 0;
+    flex: none;
+}
+
+.MdBx.hr > div {
+    width: 0;
+    overflow: hidden;
+    -webkit-box-flex: 1;
+    flex: 1 1 auto;
+}
+
+/* Text */
+
+.MdTxt p {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.MdBx > div.fl0 {
+    -webkit-box-flex: 0;
+    flex: none;
+}
+
+.MdBx > div.fl1 {
+    -webkit-box-flex: 1;
+    flex: 1 1 auto;
+}
+
+.MdBx > div.fl2 {
+    -webkit-box-flex: 2;
+    flex: 2 2 auto;
+}
+
+.MdBx > div.fl3 {
+    -webkit-box-flex: 3;
+    flex: 3 3 auto;
+}
+
+.MdBx.hr > div.fl0 {
+    width: auto;
+}
+
+.MdBx > div.grvC {
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+
+.MdBx > div.grvB {
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+}
+
+/* Seperate */
+
+.MdBx.hr > div.MdSep {
+    overflow: visible;
+}
+
+.MdSep {
+    position: relative;
+    -webkit-box-flex: 0;
+    float: none;
+}
+
+[class*="MdSep"] {
+    -webkit-box-flex: 0;
+    flex: none;
+    box-sizing: content-box;
+    width: 100%;
+    border: 0 solid #d4d6da;
+}
+
+.MdSep::before {
+    box-sizing: content-box;
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 1px;
+    border: inherit;   
+    border-top-width: 1px;
+    -webkit-transform-origin: left top;
+    transform-origin: left top;
+    -webkit-transform: scaleY(.5);
+    transform: scaleY(.5);
+}
+
+.MdBx.hr > div.MdSep::before {
+    width: 1px;
+    height: 100%;
+    border-top-width: 0;
+    border-left-width: 1px;
+    -webkit-transform: scaleX(.5);
+    transform: scaleX(.5);
+}
+
+.MdBx.hr > div[class*="MdSep"] {
+    -webkit-box-flex: 0;
+    flex: none;
+}
+
+/* Image */
+.MdImg {
+    -webkit-box-align: center;
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+}
+
+.MdImg > div {
+    max-width: 100%;
+}
+
+.MdImg.ExMd > div {
+    width: 100px;
+}
+
+.MdImg a {
+    display: block;
+    position: relative;
+    width: 100%;
+}
+
+.MdImg span {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.MdImg.ExFit span {
+    background-size: contain;
+}
+
+/* Button */
+.MdBtn.ExBtnL a {
+    color: #42659a;
+}
+
+.MdBtn.ExBtn1 a {
+    background-color: #17c950;
+    color: #fff;
+}
+
+.MdBtn.ExBtn2 a {
+    background-color: #dcdfe5;
+    color: #111;
+}
+
+.MdBtn a {
+    display: inherit;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    width: auto;
+    height: 52px;
+    padding: 0 16px;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.MdBtn div {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 100%;
+}
+
+.fxC0 {
+    background-color: #0000ff !important;
+}
