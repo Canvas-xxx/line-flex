@@ -3,13 +3,15 @@
 </div>
 
 <ng-template #success>
-  <ng-container *ngTemplateOutlet="data.type === 'bubble' ? bubble : null"></ng-container>
+  <ng-container *ngTemplateOutlet="data.type === 'bubble' ? bubble : null; context: data"></ng-container>
   <ng-container *ngTemplateOutlet="data.type === 'carousel' ? carousel : null"></ng-container>
 </ng-template>
 
-<ng-template #bubble>
-  <div style="display: flex; flex-direction: column; width: 300px; min-height: 450px; background-color: white; border-radius: 8px; overflow: hidden;">
-    <ng-container *ngTemplateOutlet="data.header ? header : null"></ng-container>
+<ng-template #bubble let-header="header" let-hero="hero" let-body="body">
+  <div class="T1">
+    <ng-container *ngTemplateOutlet="header ? headerBlock : null; context: header"></ng-container>
+    <ng-container *ngTemplateOutlet="hero ? heroBlock : null; context: hero"></ng-container>
+    <ng-container *ngTemplateOutlet="body ? bodyBlock : null; context: body"></ng-container>
   </div>
 </ng-template>
 
@@ -17,50 +19,81 @@
   <div style="width: 300px; height: 450px; background-color: green; border-radius: 8px;"></div>
 </ng-template>
 
-<ng-template #header>
-  <div style="display: inherit; padding: 20px;">
-    <ng-container *ngTemplateOutlet="data.header.type === 'box' ? box : null"></ng-container>
+<ng-template #headerBlock let-type="type" let-layout="layout" let-contents="contents" let-margin="margin" let-spacing="spacing">
+  <div class="t1Header">
+    <ng-container *ngTemplateOutlet="type === 'box' ? box : null; context: { type: type, layout: layout, contents: contents, flex: flex, spacing: spacing, margin: margin, action: action }"></ng-container>
   </div>
 </ng-template>
 
-<ng-template #box>
-  <div class="MdBx" [ngClass]="{'vr': data.header.layout === 'vertical', 'hr': data.header.layout === 'horizontal'}">
-    <ng-container *ngFor="let head of data.header.contents">
-      <ng-container *ngTemplateOutlet="head.type === 'text' ? text : null; context: head"></ng-container>
-      <ng-container *ngTemplateOutlet="head.type === 'separator' ? separator : null;"></ng-container>
-      <ng-container *ngTemplateOutlet="head.type === 'image' ? image : null; context: head"></ng-container>
-      <ng-container *ngTemplateOutlet="head.type === 'button' ? button : null; context: head"></ng-container>
+<ng-template #heroBlock let-type="type" let-url="url" let-size="size" let-aspectRatio="aspectRatio" let-aspectMode="aspectMode" let-action="action" let-color="color" let-gravity="gravity" let-flex="flex" let-margin="margin" let-align="align">
+  <ng-container *ngTemplateOutlet="contentTemplate; context: { type: type, url: url, flex: flex, margin: margin, align: align, gravity: gravity, size: size, aspectRatio: aspectRatio, aspectMode: aspectMode, backgroundColor: backgroundColor, action: action }"></ng-container>
+</ng-template>
+
+<ng-template #bodyBlock let-type="type" let-layout="layout" let-contents="contents" let-margin="margin" let-spacing="spacing">
+  <div class="t1Body">
+    <ng-container *ngTemplateOutlet="type === 'box' ? box : null; context: { type: type, layout: layout, contents: contents, flex: flex, spacing: spacing, margin: margin, action: action }"></ng-container>
+  </div>
+</ng-template>
+
+<ng-template #box let-type="type" let-layout="layout" let-contents="contents" let-flex="flex" let-spacing="spacing" let-margin="margin" let-action="action">
+  <div class="MdBx" 
+    [ngClass]="{'vr': layout === 'vertical', 'hr': layout === 'horizontal' || layout === 'baseline', 'bl': layout === 'baseline',
+      'spcXs': spacing === 'xs', 'spcSm': spacing === 'sm', 'spcMd': spacing === 'md',
+      'spcLg': spacing === 'lg', 'spcXl': spacing === 'xl', 'spcXXl': spacing === 'xxl'}">
+    <ng-container *ngFor="let content of contents">
+      <ng-container *ngTemplateOutlet="contentTemplate; context: content"></ng-container>
     </ng-container>
   </div>
 </ng-template>
 
-<ng-template #text let-text="text">
-  <div class="MdTxt">
+<ng-template #contentTemplate let-type="type" let-text="text" let-url="url" let-size="size" let-style="style" let-aspectRatio="aspectRatio" let-aspectMode="aspectMode" let-action="action" let-flex="flex" let-margin="margin" let-height="height" let-color="color" let-gravity="gravity" let-align="align" let-layout="layout" let-contents="contents" let-flex="flex" let-spacing="spacing">
+  <ng-container *ngTemplateOutlet="type === 'box' ? box : null; context: { type: type, layout: layout, contents: contents, flex: flex, spacing: spacing, margin: margin, action: action }"></ng-container>
+  <ng-container *ngTemplateOutlet="type === 'text' ? textComponent : null; context: { text: text, color: color, size: size, flex: flex }"></ng-container>
+  <ng-container *ngTemplateOutlet="type === 'separator' ? separatorComponent : null;"></ng-container>
+  <ng-container *ngTemplateOutlet="type === 'image' ? imageComponent : null; context: { url: url, flex: flex, margin: margin, align: align, gravity: gravity, size: size, aspectRatio: aspectRatio, aspectMode: aspectMode, backgroundColor: backgroundColor, action: action }"></ng-container>
+  <ng-container *ngTemplateOutlet="type === 'button' ? buttonComponent : null; context: { style: style, action: action, flex: flex, margin: margin, height: height, color: color, gravity: gravity }"></ng-container>
+</ng-template>
+
+<ng-template #textComponent let-text="text" let-color="color" let-size="size" let-flex="flex">
+  <div class="MdTxt"
+    [ngClass]="{'fl0': !flex || flex === 0,
+    'fl1': flex === 1, 'fl2': flex === 2,
+    'fl3': flex === 3, 'ExXs': size === 'xs',
+    'ExSm': size === 'sm', 'ExMd': size === 'md',
+    'ExLg': size === 'lg', 'ExXl': size === 'xl',
+    'ExXXl': size === 'xxl'}">
     <p>{{ text }}</p>
   </div>
 </ng-template>
 
-<ng-template #separator>
+<ng-template #separatorComponent>
   <div class="fl0 MdSep"></div>
 </ng-template>
 
-<ng-template #image let-url="url">
-  <div class="MdImg ExMd ExFit">
+<ng-template #imageComponent let-url="url" let-flex="flex" let-margin="margin" let-align="align" let-gravity="gravity" let-size="size" let-aspectRatio="aspectRatio" let-aspectMode="aspectMode" let-backgroundColor="backgroundColor" let-action="action">
+  <div class="MdImg" 
+  [ngClass]="{'ExFull': size === 'full', 'Ex5Xl': size === '5xl',
+    'Ex4Xl': size === '4xl', 'Ex3Xl': size === '3xl',
+    'ExXXl': size === 'xxl', 'ExXl': size === 'xl',
+    'ExLg': size === 'lg',  'ExMd': size === 'md',
+    'ExSm': size === 'sm', 'ExXs': size === 'xs',
+    'ExFit': aspectMode === 'fit', 'ExCover': aspectMode === 'cover'}">
     <div>
-      <a style="padding-bottom: 100%;">
+      <a [ngStyle]="{'padding-bottom': aspectRatio ? aspectRatioCalculate(aspectRatio) : '100%'}">
         <span [ngStyle]="{'background-image': 'url(' + url + ')'}"></span>
       </a>
     </div>
   </div>
 </ng-template>
 
-<ng-template #button let-label="action.label" let-style="style" let-color="color" let-gravity="gravity" let-flex="flex" let-margin="margin">
+<ng-template #buttonComponent let-style="style" let-action="action" let-flex="flex" let-margin="margin" let-height="height" let-color="color" let-gravity="gravity">
   <div class="MdBtn" 
     [ngClass]="{'ExBtnL': !style, 'ExBtnL': style === 'link', 
       'ExBtn1': style === 'primary', 
       'ExBtn2': style === 'secondary',
       'grvC': gravity === 'center', 
       'grvB': gravity === 'bottom',
+      'fl0': !flex || flex === 0,
       'fl1': flex === 1,
       'fl2': flex === 2,
       'fl3': flex === 3,
@@ -71,7 +104,7 @@
       'ExLXl': margin === 'xl',
       'ExLXXl': margin === 'xxl'}">
     <a [ngStyle]="{'background-color': style && style !== 'link' ? color : ''}">
-      <div [ngStyle]="{'color': style && style !== 'link' ? '' : color}">{{ label }}</div>
+      <div [ngStyle]="{'color': style && style !== 'link' ? '' : color}">{{ action.label }}</div>
     </a>
   </div>
 </ng-template>

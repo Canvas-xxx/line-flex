@@ -15,4 +15,11 @@ export class FlexPreviewComponent implements OnInit {
     console.log(this.data)
   }
 
+  aspectRatioCalculate = (ratio: string): string => {
+    if(!ratio)
+      return '100%'
+    const ratioParse = ratio.split(':').map(r => parseInt(r))
+    return (ratioParse[1] / ratioParse[0]) * 100 + '%'
+  }
+
 }

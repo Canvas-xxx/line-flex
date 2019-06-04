@@ -16,32 +16,27 @@ export class ConsolePageComponent implements OnInit {
       "type": "box",
       // "layout": "vertical",
       "layout": "horizontal",
+      "margin": "xxl",
+      "spacing": "xxl",
       "contents": [
         {
-          "type": "image",
-          "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png"
-        },
-        {
           "type": "text",
-          "text": "Text in the box"
+          "text": "header"
         },
         {
           "type": "separator"
         },
         {
           "type": "button",
-          "margin": "xxl",
+          "style": "primary",
           "action": {
             "type": "uri",
-            "label": "Tap me",
+            "label": "Primary style button",
             "uri": "https://example.com"
-          },
-          "flex": 2,
-          "style": "primary",
-          "color": "#0000ff"
+          }
         }
       ]
-    },  
+    },
     "hero": {
       "type": "image",
       "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",

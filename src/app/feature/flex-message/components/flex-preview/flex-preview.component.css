@@ -6,6 +6,17 @@ a {
     -webkit-touch-callout: none;
 }
 
+.T1 {
+    border-radius: 17px;
+    overflow: hidden;
+    background-color: #ffffff;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+}
+
 .MdBx, [class*="MdSep"], .MdTxt, .MdIco, .MdBtn, .MdImg {
     -webkit-box-flex: 1;
     flex: 1 1 auto;
@@ -46,6 +57,30 @@ a {
     margin-left: 20px !important;
 }
 
+.T1 .t1Header, .T1 .t1Hero, .T1 .t1Body, .T1 .t1Footer {
+    display: inherit;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    padding: 20px 20px 20px 20px;
+}
+
+/* Hero */
+
+.T1 .t1Hero {
+    padding: 0;
+}
+
+/* Body */
+
+.T1 .t1Body.ExHasFooter {
+    padding-bottom: 10px;
+}
+
+.T1 .t1Body {
+    padding-top: 19px;
+}
+
 /* Box */
 
 .MdBx {
@@ -69,6 +104,67 @@ a {
     overflow: hidden;
     -webkit-box-flex: 1;
     flex: 1 1 auto;
+}
+
+.MdBx.hr.bl {
+    -webkit-box-align: baseline;
+    align-items: baseline;
+}
+
+.MdBx.vr > div:first-child, .MdBx.vr > div.mdBxFiller, .MdBx.vr > div.mdBxSpacer {
+    margin-top: 0 !important;
+}
+
+.MdBx.vr.spcXs > div {
+    margin-top: 2px;
+}
+
+.MdBx.vr.spcSm > div {
+    margin-top: 4px;
+}
+
+.MdBx.vr.spcMd > div {
+    margin-top: 8px;
+}
+
+.MdBx.vr.spcLg > div {
+    margin-top: 12px;
+}
+
+.MdBx.vr.spcXl > div {
+    margin-top: 16px;
+}
+
+.MdBx.vr.spcXXl > div {
+    margin-top: 20px;
+}
+
+.T1 .MdBx.hr > div:first-child, .T1 .MdBx.hr > div.mdBxFiller, .T1 .MdBx.hr > div.mdBxSpacer {
+    margin-left: 0 !important;
+}
+
+.T1 .MdBx.hr.spcXs > div {
+    margin-left: 2px;
+}
+
+.T1 .MdBx.hr.spcSm > div {
+    margin-left: 4px;
+}
+
+.T1 .MdBx.hr.spcMd > div {
+    margin-left: 8px;
+}
+
+.T1 .MdBx.hr.spcLg > div {
+    margin-left: 12px;
+}
+
+.T1 .MdBx.hr.spcXl > div {
+    margin-left: 16px;
+}
+
+.T1 .MdBx.hr.spcXXl > div {
+    margin-left: 20px;
 }
 
 /* Text */
@@ -111,6 +207,30 @@ a {
 .MdBx > div.grvB {
     -webkit-box-pack: end;
     justify-content: flex-end;
+}
+
+.MdTxt.ExXs, .MdIco.ExXs {
+    font-size: 13px;
+}
+
+.MdTxt.ExSm, .MdIco.ExSm {
+    font-size: 14px;
+}
+
+.MdTxt.ExMd, .MdIco.ExMd {
+    font-size: 16px;
+}
+
+.MdTxt.ExLg, .MdIco.ExLg {
+    font-size: 19px;
+}
+
+.MdTxt.ExXl, .MdIco.ExXl {
+    font-size: 22px;
+}
+
+.MdTxt.ExXXl, .MdIco.ExXXl {
+    font-size: 29px;
 }
 
 /* Seperate */
@@ -199,6 +319,50 @@ a {
 
 .MdImg.ExFit span {
     background-size: contain;
+}
+
+.MdImg.ExCover span {
+    background-size: cover;
+}
+
+.MdImg.ExFull > div {
+    width: 100%;
+}
+
+.MdImg.Ex5Xl > div {
+    width: 220px;
+}
+
+.MdImg.Ex4Xl > div {
+    width: 200px;
+}
+
+.MdImg.Ex3Xl > div {
+    width: 180px;
+}
+
+.MdImg.ExXXl > div {
+    width: 160px;
+}
+
+.MdImg.ExXl > div {
+    width: 140px;
+}
+
+.MdImg.ExLg > div {
+    width: 120px;
+}
+
+.MdImg.ExMd > div {
+    width: 100px;
+}
+
+.MdImg.ExSm > div {
+    width: 80px;
+}
+
+.MdImg.ExXs > div {
+    width: 60px;
 }
 
 /* Button */
