@@ -6,6 +6,13 @@ a {
     -webkit-touch-callout: none;
 }
 
+body {
+    line-height: 1.4;
+    color: #444;
+    font-size: 16px;
+    -webkit-text-size-adjust: none;
+}
+
 .T1 {
     border-radius: 17px;
     overflow: hidden;
@@ -46,7 +53,7 @@ a {
 }
 
 .ExLLg {
-    margin-left: 16px !important;
+    margin-left: 12px !important;
 }
 
 .ExLXl {
@@ -55,6 +62,30 @@ a {
 
 .ExLXXl {
     margin-left: 20px !important;
+}
+
+.ExTXs {
+    margin-top: 2px !important;
+}
+
+.ExTSm {
+    margin-top: 4px !important;
+}
+
+.ExTMd {
+    margin-top: 8px !important;
+}
+
+.ExTLg {
+    margin-top: 12px !important;
+}
+
+.ExTXl {
+    margin-top: 16px !important;
+}
+
+.ExTXXl {
+    margin-top: 20px !important;
 }
 
 .T1 .t1Header, .T1 .t1Hero, .T1 .t1Body, .T1 .t1Footer {
@@ -79,6 +110,12 @@ a {
 
 .T1 .t1Body {
     padding-top: 19px;
+}
+
+/* Footer */
+
+.T1 .t1Footer {
+    padding: 10px 10px 10px 10px;
 }
 
 /* Box */
@@ -113,6 +150,50 @@ a {
 
 .MdBx.vr > div:first-child, .MdBx.vr > div.mdBxFiller, .MdBx.vr > div.mdBxSpacer {
     margin-top: 0 !important;
+}
+
+.MdBx > div.fl0 {
+    -webkit-box-flex: 0;
+    flex: none;
+}
+
+.MdBx > div.fl1 {
+    -webkit-box-flex: 1;
+    flex: 1 1 auto;
+}
+
+.MdBx > div.fl2 {
+    -webkit-box-flex: 2;
+    flex: 2 2 auto;
+}
+
+.MdBx > div.fl3 {
+    -webkit-box-flex: 3;
+    flex: 3 3 auto;
+}
+
+.MdBx.hr > div.fl0 {
+    width: auto;
+}
+
+.MdBx > div.grvC {
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+
+.MdBx > div.grvB {
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+}
+
+.MdBx > div.algS {
+    -webkit-box-align: start;
+    align-items: flex-start;
+}
+
+.MdBx > div.algE {
+    -webkit-box-align: end;
+    align-items: flex-end;
 }
 
 .MdBx.vr.spcXs > div {
@@ -175,38 +256,16 @@ a {
     white-space: nowrap;
 }
 
-.MdBx > div.fl0 {
-    -webkit-box-flex: 0;
-    flex: none;
+.MdTxt.ExAlgC p {
+    text-align: center;
 }
 
-.MdBx > div.fl1 {
-    -webkit-box-flex: 1;
-    flex: 1 1 auto;
+.MdTxt.ExAlgE p {
+    text-align: end;
 }
 
-.MdBx > div.fl2 {
-    -webkit-box-flex: 2;
-    flex: 2 2 auto;
-}
-
-.MdBx > div.fl3 {
-    -webkit-box-flex: 3;
-    flex: 3 3 auto;
-}
-
-.MdBx.hr > div.fl0 {
-    width: auto;
-}
-
-.MdBx > div.grvC {
-    -webkit-box-pack: center;
-    justify-content: center;
-}
-
-.MdBx > div.grvB {
-    -webkit-box-pack: end;
-    justify-content: flex-end;
+.MdTxt.ExXXs, .MdIco.ExXXs {
+    font-size: 11px;
 }
 
 .MdTxt.ExXs, .MdIco.ExXs {
@@ -231,6 +290,16 @@ a {
 
 .MdTxt.ExXXl, .MdIco.ExXXl {
     font-size: 29px;
+}
+
+.MdTxt.ExWB p {
+    font-weight: bold;
+}
+
+.MdTxt.ExWrap p {
+    text-overflow: clip;
+    word-wrap: break-word;
+    white-space: normal;
 }
 
 /* Seperate */
@@ -402,4 +471,61 @@ a {
 
 .fxC0 {
     background-color: #0000ff !important;
+}
+
+.MdBtn.ExSm a {
+    height: 40px;
+}
+
+/* Icon */
+
+.MdIco span {
+    display: inline-block;
+    overflow: hidden;
+    background: no-repeat center;
+    background-image: none;
+    background-size: auto;
+    background-size: contain;
+    width: 1em;
+    height: 1em;
+    vertical-align: baseline;
+}
+
+.MdTxt.ExSm, .MdIco.ExSm {
+    font-size: 14px;
+}
+
+/* Spacer */
+
+.MdBx.vr > div.mdBxSpacer {
+    width: 1px;
+}
+
+.MdBx > div.mdBxSpacer {
+    -webkit-box-flex: 0;
+    flex: none;
+}
+
+.MdBx.vr > div.mdBxSpacer.spcXs {
+    height: 2px;
+}
+
+.MdBx.vr > div.mdBxSpacer.spcSm {
+    height: 4px;
+}
+
+.MdBx.vr > div.mdBxSpacer.spcMd {
+    height: 8px;
+}
+
+.MdBx.vr > div.mdBxSpacer.spcLg {
+    height: 12px;
+}
+
+.MdBx.vr > div.mdBxSpacer.spcXl {
+    height: 16px;
+}
+
+.MdBx.vr > div.mdBxSpacer.spcXXl {
+    height: 20px;
 }

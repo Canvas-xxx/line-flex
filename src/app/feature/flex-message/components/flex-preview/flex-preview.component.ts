@@ -15,6 +15,13 @@ export class FlexPreviewComponent implements OnInit {
     console.log(this.data)
   }
 
+  combineContent = (content: object, layout: string): any => {
+    return {
+      ...content,
+      parentLayout: layout
+    }
+  }
+
   aspectRatioCalculate = (ratio: string): string => {
     if(!ratio)
       return '100%'
