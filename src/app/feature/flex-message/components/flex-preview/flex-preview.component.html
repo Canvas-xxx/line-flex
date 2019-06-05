@@ -1,10 +1,18 @@
-<div style="display: block; width: 300px; height: 100%; margin: 50px auto; overflow: scroll;">
-  <ng-container *ngTemplateOutlet="status === 'OK' && data ? success : null"></ng-container>
-</div>
+<!-- <div style="display: block; width: 300px; height: 100%; margin: 50px auto; overflow: scroll;"> -->
+<ng-container *ngTemplateOutlet="status === 'OK' && data ? success : null"></ng-container>
+<!-- </div> -->
 
 <ng-template #success>
-  <ng-container *ngTemplateOutlet="data.type === 'bubble' ? bubble : null; context: data"></ng-container>
-  <ng-container *ngTemplateOutlet="data.type === 'carousel' ? carousel : null"></ng-container>
+  <ng-template *ngIf="data.type === 'bubble' then bubbleContain"></ng-template>
+  <ng-template *ngIf="data.type === 'carousel' then carouselContain"></ng-template>
+</ng-template>
+
+<ng-template #bubbleContain>
+  <div style="display: block; height: 100%; width: 300px; margin: 50px auto; border: none; overflow: scroll; box-sizing: border-box;">
+    <div style="margin: 0;">
+      <ng-container *ngTemplateOutlet="bubble; context: data"></ng-container>
+    </div>
+  </div>
 </ng-template>
 
 <ng-template #bubble let-header="header" let-hero="hero" let-body="body" let-footer="footer">
@@ -16,8 +24,24 @@
   </div>
 </ng-template>
 
-<ng-template #carousel>
-  <div style="width: 300px; height: 450px; background-color: green; border-radius: 8px;"></div>
+<ng-template #carouselContain>
+  <div style="display: block; height: 100%; width: 100%; margin: 50px auto; border: none; overflow: scroll; box-sizing: border-box;">
+    <div>
+      <ng-container *ngTemplateOutlet="carousel; context: data"></ng-container>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #carousel let-contents="contents">
+  <div class="LySlider">
+    <div class="lyInner">
+      <ng-container *ngFor="let content of contents">
+        <div class="lyItem">
+          <ng-container *ngTemplateOutlet="content.type === 'bubble' ? bubble : null; context: content"></ng-container>
+        </div>
+      </ng-container>
+    </div>
+  </div>
 </ng-template>
 
 <ng-template #headerBlock let-type="type" let-layout="layout" let-contents="contents" let-spacing="spacing">
@@ -124,10 +148,10 @@ let-align="align" let-maxLines="maxLines" let-margin="margin" let-action="action
     </div>
   </div>
 </ng-template>
-
 <ng-template #buttonComponent let-style="style" let-action="action" let-flex="flex" let-margin="margin" let-height="height" let-color="color" let-gravity="gravity" let-layout="layout">
   <div class="MdBtn" 
-    [ngClass]="{'ExBtnL': !style, 'ExBtnL': style === 'link', 
+    [ngClass]="{ 
+      'ExBtnL': style === 'link' || !style,
       'ExBtn1': style === 'primary', 'ExBtn2': style === 'secondary',
       'grvC': gravity === 'center', 'grvB': gravity === 'bottom', 
       'fl0': flex === 0, 'fl1': flex === 1,
