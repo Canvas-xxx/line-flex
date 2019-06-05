@@ -1,5 +1,5 @@
-<div style="height: 100vh; width: 100%; overflow: scroll; background-color: skyblue;">
-  <div style="height: 80px; background-color: yellow; padding: 0 0 7px 18px; position: relative; display: flex; align-items: flex-end;">
+<div class="cont">
+  <div class="headCont">
     <h1 style="position: relative; font-size: 1.1em; white-space: nowrap; font-weight: bold; top: -8px;">Flex Message Simulator</h1>
     <div style="display: flex; align-items: flex-end; flex: 1; padding: 8px 10px 0 20px; margin-right: 5px;">
       <button style="height: 50px; padding: 0 25px; margin: 0 5px;">Flex Test</button>
@@ -10,22 +10,22 @@
     </div>
   </div>
 
-  <div style="height: calc(100vh - 187px); background-color: purple; margin: 10px 0;">
-    <div style="width: 500px; height: 100%; background-color: tomato; display: inline-block; overflow: hidden; position: relative;">
+  <div class="bodyCont">
+    <div class="previewComp">
       <app-preview-content>
         <app-flex-preview [status]="status" [data]="data"></app-flex-preview>
         <app-flex-status [status]="status"></app-flex-status>
       </app-preview-content>
     </div>
 
-    <div style="width: calc(100vw - 500px); height: 100%; background-color: violet; display: inline-block; overflow: hidden;">
+    <div class="editComp">
       <app-json-editor [data]="data" [actions]="actions" (jsonData)="getJsonData($event)"></app-json-editor>
     </div>
   </div>
 
-  <div style="display: flex; align-items: center; justify-content: center; width: 100%; height: 80px; background-color: yellowgreen;">
-    <button style="height: 50px; margin-right: 5px;" (click)="onAction('preview')">Preview</button>
-    <button style="height: 50px; margin-right: 5px;" (click)="onAction('save')">Save</button>
-    <button style="height: 50px">Cancel</button>
+  <div class="footerCont">
+    <button class="smBttn" (click)="onAction('preview')">Preview</button>
+    <button class="smBttn" (click)="onAction('save')">Save</button>
+    <button class="ccBttn">Cancel</button>
   </div>
 </div>

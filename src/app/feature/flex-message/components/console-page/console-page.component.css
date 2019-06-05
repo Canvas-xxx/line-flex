@@ -1,0 +1,109 @@
+.cont {
+    height: 100vh; 
+    width: 100%; 
+    overflow: scroll; 
+    background-color: #ffffff;
+}
+
+.headCont {
+    height: 80px; 
+    background-color: #F4F6F9; 
+    padding: 0 0 7px 18px; 
+    position: relative; 
+    display: flex; 
+    align-items: flex-end;
+}
+
+.bodyCont {
+    height: calc(100vh - 189px);
+    background-color: #fff;
+    margin: 10px 0;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.previewComp {
+    width: 500px;
+    height: 100%;
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+}
+
+.editComp {
+    width: calc(100vw - 500px);
+    height: 100%;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.footerCont {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 80px;
+    background-color: #ffffff;
+    overflow: hidden;
+}
+
+.footerCont button:first-child {
+    margin-left: 0;
+}
+
+.footerCont button {
+    margin-left: 10px;
+}
+
+button.smBttn {
+    -webkit-appearance: none;
+    position: relative;
+    min-width: 200px;
+    padding: 1em 2em .9em;
+    background: #398CCD;
+    -webkit-box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    text-decoration: none;
+    font: inherit;
+    line-height: 1;
+    font-weight: normal;
+    text-align: center;
+    white-space: nowrap;
+    color: #FFF;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: none;
+}
+
+button.ccBttn {
+    -webkit-appearance: none;
+    position: relative;
+    min-width: 200px;
+    padding: 1em 2em .9em;
+    -webkit-box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    text-decoration: none;
+    font: inherit;
+    line-height: 1;
+    font-weight: normal;
+    text-align: center;
+    white-space: nowrap;
+    color: #000;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: none;
+}

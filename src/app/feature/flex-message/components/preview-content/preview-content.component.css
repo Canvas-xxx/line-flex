@@ -1,0 +1,22 @@
+.previewRenderCont {
+    background-color: #728BB2; 
+    position: absolute; 
+    z-index: 1; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    box-sizing: border-box;
+}
+
+.statusCont {
+    position: absolute; 
+    z-index: 2; 
+    bottom: 0; 
+    left: 0; 
+    width: 100%; 
+    padding: 8px; 
+    -webkit-box-sizing: border-box; 
+    box-sizing: border-box;
+}
