@@ -666,31 +666,6 @@ export class ConsolePageComponent implements OnInit {
 
   ngOnInit() {
     this.getJsonData(this.data)
-
-    // TextComponent
-    // const data: any = { type: 'text', text: 'hi', margin: 's', siz: 'a', gravity: 'center' }
-    // console.log(this.validateFlexService.instanceOfTextComponent(data))
-    // console.log(this.validateFlexService.jsonValidate)
-
-    // ButtonComponent
-    // const data: any = { type: 'button', action: '', flex: '0', height: 'md' }
-    // console.log(this.validateFlexService.instanceOfButtonComponent(data))
-    // console.log(this.validateFlexService.jsonValidate)
-
-    // IconComponent
-    // const data: any = { type: 'icon', url: 'http://google.com', margin: 'md' }
-    // console.log(this.validateFlexService.instanceOfIconComponent(data))
-    // console.log(this.validateFlexService.jsonValidate)
-
-    // ImageComponent
-    // const data: any = { type: 'icon', url: 'http://google.com', margin: 'md', aspectMode: 'fit', hi: 'j' }
-    // console.log(this.validateFlexService.instanceOfImageComponent(data))
-    // console.log(this.validateFlexService.jsonValidate)
-
-    // BoxComponent
-    const data: any = { type: 'box', layout: 'vertical', contents: [{ type: 'button', action: '', flex: '0', height: 'md' }] }
-    console.log(this.validateFlexService.instanceOfBoxComponent(data))
-    console.log(this.validateFlexService.jsonValidate)
   }
 
   onAction = (action: string): void => {
@@ -700,7 +675,18 @@ export class ConsolePageComponent implements OnInit {
   getJsonData = ($e: object | boolean): void => {
     if($e) {
       this.data = $e
-      this.status = 'OK'
+      switch(this.data.type) {
+        case 'carousel':
+          this.validateFlexService.instanceOfCarouselContainer(this.data)
+          this.status = this.validateFlexService.jsonValidate.message.length > 0 ? this.validateFlexService.jsonValidate.message : 'OK'
+          break
+        case 'bubble':
+          this.validateFlexService.instanceOfBubbleContainer(this.data)
+          this.status = this.validateFlexService.jsonValidate.message.length > 0 ? this.validateFlexService.jsonValidate.message : 'OK'
+          break
+        default:
+          this.status = 'invalid property'
+      }
     }
     if(!$e) {
       console.log('JSON syntax Error')
