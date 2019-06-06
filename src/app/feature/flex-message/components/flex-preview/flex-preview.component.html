@@ -13,8 +13,8 @@
   </div>
 </ng-template>
 
-<ng-template #bubble let-header="header" let-hero="hero" let-body="body" let-footer="footer">
-  <div class="T1">
+<ng-template #bubble let-direction="direction" let-header="header" let-hero="hero" let-body="body" let-footer="footer">
+  <div class="T1" [ngClass]="{'fxLTR': !direction || direction === 'ltr', 'fxRTL': direction === 'rtl'}" [attr.dir]="direction === 'rtl' ? 'rtl' : 'ltr'">
     <ng-container *ngTemplateOutlet="header ? headerBlock : null; context: header"></ng-container>
     <ng-container *ngTemplateOutlet="hero ? heroBlock : null; context: hero"></ng-container>
     <ng-container *ngTemplateOutlet="body ? bodyBlock : null; context: { body: body, hasFoot: footer ? true : false }"></ng-container>
@@ -110,10 +110,10 @@ let-align="align" let-maxLines="maxLines" let-margin="margin" let-action="action
       'grvC': gravity === 'center', 'grvB': gravity === 'bottom',
       'ExWrap': wrap, 'ExAlgC': align === 'center', 'ExAlgE': align === 'end',
       'ExLXs': margin === 'xs' && (layout === 'horizontal' || layout === 'baseline'), 'ExLSm': margin === 'sm' && (layout === 'horizontal' || layout === 'baseline'),
-      'ExLMd': margin === 'md' && (layout === 'horizontal' || layout === 'baseline'), 'ExLLg': margin === 'lg' && (layout === 'horizontal' || layout === 'baseline'),
+      'ExLMd': (margin === 'md' && (layout === 'horizontal' || layout === 'baseline')) || (!margin && (layout === 'horizontal' || layout === 'baseline')), 'ExLLg': margin === 'lg' && (layout === 'horizontal' || layout === 'baseline'),
       'ExLXl': margin === 'xl' && (layout === 'horizontal' || layout === 'baseline'), 'ExLXXl': margin === 'xxl' && (layout === 'horizontal' || layout === 'baseline'),
       'ExTXs': margin === 'xs' && layout === 'vertical', 'ExTSm': margin === 'sm' && layout === 'vertical',
-      'ExTMd': margin === 'md' && layout === 'vertical', 'ExTLg': margin === 'lg' && layout === 'vertical',
+      'ExTMd': (margin === 'md' && layout === 'vertical') || (!margin && layout === 'vertical'), 'ExTLg': margin === 'lg' && layout === 'vertical',
       'ExTXl': margin === 'xl' && layout === 'vertical', 'ExTXXl': margin === 'xxl' && layout === 'vertical'}"
     [ngStyle]="{'flex': flex >= 4 ? flex + ' ' + flex + ' auto' : null,
       '-webkit-box-flex': flex >= 4 ? flex : null}">

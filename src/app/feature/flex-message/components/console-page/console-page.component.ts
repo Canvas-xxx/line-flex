@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
+import { ValidateFlexService } from '../../services/validate-flex.service'
 
 @Component({
   selector: 'app-console-page',
@@ -661,9 +662,35 @@ export class ConsolePageComponent implements OnInit {
     ]
   }
 
-  constructor() {  }
+  constructor(private validateFlexService: ValidateFlexService) {  }
 
   ngOnInit() {
+    this.getJsonData(this.data)
+
+    // TextComponent
+    // const data: any = { type: 'text', text: 'hi', margin: 's', siz: 'a', gravity: 'center' }
+    // console.log(this.validateFlexService.instanceOfTextComponent(data))
+    // console.log(this.validateFlexService.jsonValidate)
+
+    // ButtonComponent
+    // const data: any = { type: 'button', action: '', flex: '0', height: 'md' }
+    // console.log(this.validateFlexService.instanceOfButtonComponent(data))
+    // console.log(this.validateFlexService.jsonValidate)
+
+    // IconComponent
+    // const data: any = { type: 'icon', url: 'http://google.com', margin: 'md' }
+    // console.log(this.validateFlexService.instanceOfIconComponent(data))
+    // console.log(this.validateFlexService.jsonValidate)
+
+    // ImageComponent
+    // const data: any = { type: 'icon', url: 'http://google.com', margin: 'md', aspectMode: 'fit', hi: 'j' }
+    // console.log(this.validateFlexService.instanceOfImageComponent(data))
+    // console.log(this.validateFlexService.jsonValidate)
+
+    // BoxComponent
+    const data: any = { type: 'box', layout: 'vertical', contents: [{ type: 'button', action: '', flex: '0', height: 'md' }] }
+    console.log(this.validateFlexService.instanceOfBoxComponent(data))
+    console.log(this.validateFlexService.jsonValidate)
   }
 
   onAction = (action: string): void => {

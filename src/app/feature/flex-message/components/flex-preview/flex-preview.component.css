@@ -13,6 +13,14 @@ body {
     -webkit-text-size-adjust: none;
 }
 
+.fxLTR, [dir="ltr"] {
+    direction: ltr;
+}
+
+.fxRTL, [dir="rtl"] {
+    direction: rtl;
+}
+
 .T1 {
     border-radius: 17px;
     overflow: hidden;

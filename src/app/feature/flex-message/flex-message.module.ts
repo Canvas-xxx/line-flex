@@ -9,12 +9,15 @@ import { FlexPreviewComponent } from './components/flex-preview/flex-preview.com
 import { FlexStatusComponent } from './components/flex-status/flex-status.component';
 import { JsonEditorComponent } from './components/json-editor/json-editor.component';
 
+import { ValidateFlexService } from './services/validate-flex.service'
+
 @NgModule({
   declarations: [ConsolePageComponent, PreviewContentComponent, FlexPreviewComponent, FlexStatusComponent, JsonEditorComponent],
   imports: [
     CommonModule,
     FlexMessageRoutingModule,
     NgJsonEditorModule
-  ]
+  ],
+  providers: [ ValidateFlexService ]
 })
 export class FlexMessageModule { }
