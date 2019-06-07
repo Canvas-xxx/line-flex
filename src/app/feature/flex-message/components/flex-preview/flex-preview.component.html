@@ -78,7 +78,7 @@
       'ExTMd': margin === 'md' && (parentLayout ? parentLayout : layout) === 'vertical', 'ExTLg': margin === 'lg' && (parentLayout ? parentLayout : layout) === 'vertical',
       'ExTXl': margin === 'xl' && (parentLayout ? parentLayout : layout) === 'vertical', 'ExTXXl': margin === 'xxl' && (parentLayout ? parentLayout : layout) === 'vertical'}">
     <ng-container *ngFor="let content of contents">
-      <ng-container *ngTemplateOutlet="contentTemplate; context: combineContent(content, layout)"></ng-container>
+      <ng-container *ngTemplateOutlet="content.type === 'box' ? box : contentTemplate; context: combineContent(content, layout)"></ng-container>
     </ng-container>
   </div>
 </ng-template>
@@ -88,7 +88,6 @@
   let-height="height" let-color="color" let-gravity="gravity" let-align="align" let-layout="layout" let-contents="contents" 
   let-flex="flex" let-spacing="spacing" let-weight="weight" let-wrap="wrap" let-maxLines="maxLines" let-parentLayout="parentLayout"
   let-backgroundColor="backgroundColor">
-  <ng-container *ngTemplateOutlet="type === 'box' ? box : null; context: { type: type, layout: layout, contents: contents, flex: flex, spacing: spacing, margin: margin, action: action, parentLayout: parentLayout }"></ng-container>
   <ng-container *ngTemplateOutlet="type === 'text' ? textComponent : null; context: { text: text, color: color, size: size, flex: flex, weight: weight, wrap: wrap, gravity: gravity, align: align, maxLines: maxLines, margin: margin, action: action, layout: parentLayout }"></ng-container>
   <ng-container *ngTemplateOutlet="type === 'image' ? imageComponent : null; context: { url: url, flex: flex, margin: margin, align: align, gravity: gravity, size: size, aspectRatio: aspectRatio, aspectMode: aspectMode, backgroundColor: backgroundColor, action: action, layout: parentLayout }"></ng-container>
   <ng-container *ngTemplateOutlet="type === 'button' ? buttonComponent : null; context: { style: style, action: action, flex: flex, margin: margin, height: height, color: color, gravity: gravity, layout: parentLayout }"></ng-container>
