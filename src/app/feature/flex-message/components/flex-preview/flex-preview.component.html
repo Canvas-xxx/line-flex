@@ -13,12 +13,18 @@
   </div>
 </ng-template>
 
-<ng-template #bubble let-direction="direction" let-header="header" let-hero="hero" let-body="body" let-footer="footer">
+<ng-template #bubble let-direction="direction" let-header="header" let-hero="hero" let-body="body" let-footer="footer" let-styles="styles">
   <div class="T1" [ngClass]="{'fxLTR': !direction || direction === 'ltr', 'fxRTL': direction === 'rtl'}" [attr.dir]="direction === 'rtl' ? 'rtl' : 'ltr'">
-    <ng-container *ngTemplateOutlet="header ? headerBlock : null; context: header"></ng-container>
-    <ng-container *ngTemplateOutlet="hero ? heroBlock : null; context: hero"></ng-container>
-    <ng-container *ngTemplateOutlet="body ? bodyBlock : null; context: { body: body, hasFoot: footer ? true : false }"></ng-container>
-    <ng-container *ngTemplateOutlet="footer ? footerBlock : null; context: footer"></ng-container>
+    <ng-container *ngTemplateOutlet="header ? headerBlock : null; context: { header: header, backgroundColor: styles && styles.header?.backgroundColor ? styles.header?.backgroundColor : null }"></ng-container>
+    
+    <ng-container *ngTemplateOutlet="styles && styles.hero?.separator && hero && header ? separatorComponent : null; context: { color: styles && styles.hero?.separatorColor ? styles.hero?.separatorColor : null }"></ng-container>
+    <ng-container *ngTemplateOutlet="hero ? heroBlock : null; context: { hero: hero, backgroundColor: styles && styles.hero?.backgroundColor ? styles.hero?.backgroundColor : null }"></ng-container>
+
+    <ng-container *ngTemplateOutlet="styles && styles.body?.separator && body && (header || hero) ? separatorComponent : null; context: { color: styles && styles.body?.separatorColor ? styles.body?.separatorColor : null }"></ng-container>
+    <ng-container *ngTemplateOutlet="body ? bodyBlock : null; context: { body: body, hasFoot: footer ? true : false, backgroundColor: styles && styles.body?.backgroundColor ? styles.body?.backgroundColor : null }"></ng-container>
+    
+    <ng-container *ngTemplateOutlet="styles && styles.footer?.separator && footer && (header || hero || body) ? separatorComponent : null; context: { color: styles && styles.footer?.separatorColor ? styles.footer?.separatorColor : null }"></ng-container>
+    <ng-container *ngTemplateOutlet="footer ? footerBlock : null; context: { footer: footer, backgroundColor: styles && styles.footer?.backgroundColor ? styles.footer?.backgroundColor : null }"></ng-container>
   </div>
 </ng-template>
 
@@ -42,26 +48,29 @@
   </div>
 </ng-template>
 
-<ng-template #headerBlock let-type="type" let-layout="layout" let-contents="contents" let-spacing="spacing">
-  <div class="t1Header">
+<ng-template #headerBlock let-type="header.type" let-layout="header.layout" let-contents="header.contents" let-spacing="header.spacing" let-backgroundColor="backgroundColor">
+  <div class="t1Header"
+    [ngStyle]="{'background-color': backgroundColor ? backgroundColor : null}">
     <ng-container *ngTemplateOutlet="type === 'box' ? box : null; context: { type: type, layout: layout, contents: contents, spacing: spacing }"></ng-container>
   </div>
 </ng-template>
 
-<ng-template #heroBlock let-type="type" let-url="url" let-size="size" let-aspectRatio="aspectRatio" let-aspectMode="aspectMode" let-action="action" let-gravity="gravity" let-flex="flex" let-margin="margin" let-align="align" let-backgroundColor="backgroundColor">
-  <div class="t1Hero">
+<ng-template #heroBlock let-type="hero.type" let-url="hero.url" let-size="hero.size" let-aspectRatio="hero.aspectRatio" let-aspectMode="hero.aspectMode" let-action="hero.action" let-gravity="hero.gravity" let-flex="hero.flex" let-margin="hero.margin" let-align="hero.align" let-backgroundColor="backgroundColor">
+  <div class="t1Hero"
+    [ngStyle]="{'background-color': backgroundColor ? backgroundColor : null}">
     <ng-container *ngTemplateOutlet="type === 'image' ? imageComponent : null; context: { type: type, url: url, flex: flex, margin: margin, align: align, gravity: gravity, size: size, aspectRatio: aspectRatio, aspectMode: aspectMode, backgroundColor: backgroundColor, action: action }">{{backgroundColor}}</ng-container>
   </div>
 </ng-template>
 
-<ng-template #bodyBlock let-type="body.type" let-layout="body.layout" let-contents="body.contents" let-margin="body.margin" let-spacing="body.spacing" let-hasFoot="hasFoot">
-  <div class="t1Body" [ngClass]="{'ExHasFooter': hasFoot}">
+<ng-template #bodyBlock let-type="body.type" let-layout="body.layout" let-contents="body.contents" let-margin="body.margin" let-spacing="body.spacing" let-hasFoot="hasFoot" let-backgroundColor="backgroundColor">
+  <div class="t1Body" [ngClass]="{'ExHasFooter': hasFoot}" [ngStyle]="{'background-color': backgroundColor ? backgroundColor : null}">
     <ng-container *ngTemplateOutlet="type === 'box' ? box : null; context: { type: type, layout: layout, contents: contents, flex: flex, spacing: spacing, margin: margin, action: action }"></ng-container>
   </div>
 </ng-template>
 
-<ng-template #footerBlock let-type="type" let-layout="layout" let-contents="contents" let-spacing="spacing">
-  <div class="t1Footer">
+<ng-template #footerBlock let-type="footer.type" let-layout="footer.layout" let-contents="footer.contents" let-spacing="footer.spacing" let-backgroundColor="backgroundColor">
+  <div class="t1Footer"
+    [ngStyle]="{'background-color': backgroundColor ? backgroundColor : null}">
     <ng-container *ngTemplateOutlet="type === 'box' ? box : null; context: { type: type, layout: layout, contents: contents, spacing: spacing }"></ng-container>
   </div>
 </ng-template>
