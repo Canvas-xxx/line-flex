@@ -273,12 +273,10 @@ export class ValidateFlexService {
   }
 
   instanceOfBlockStyle = (object: any): object is BlockStyle => {
-    this.jsonValidate.message = 'backgroundColor: invalid property'
-    if('backgroundColor' in object && (typeof object.backgroundColor !== 'string' || !this.colorHexValidation(object.backgroundColor)) ) { return false }
-    this.jsonValidate.message = 'separator: invalid property'
-    if('separator' in object && typeof object.separator !== 'boolean' ) { return false }
-    this.jsonValidate.message = 'separatorColor: invalid property'
-    if('separatorColor' in object && (typeof object.separatorColor !== 'string' || !this.colorHexValidation(object.separatorColor)) ) { return false }
+    this.jsonValidate.message = 'invalid property'
+    if('backgroundColor' in object && (typeof object.backgroundColor !== 'string' || !this.colorHexValidation(object.backgroundColor)) ) { this.jsonValidate.property = `${status}/backgroundColor${this.jsonValidate.property}`; return false }
+    if('separator' in object && typeof object.separator !== 'boolean' ) { this.jsonValidate.property = `${status}/separator${this.jsonValidate.property}`; return false }
+    if('separatorColor' in object && (typeof object.separatorColor !== 'string' || !this.colorHexValidation(object.separatorColor)) ) { this.jsonValidate.property = `${status}/separatorColor${this.jsonValidate.property}`; return false }
     if(Object.keys(object).some(key => {
       if(Object.keys(new BlockStyle()).indexOf(key) === -1) {
         this.jsonValidate.property += `/${key}`
