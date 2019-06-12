@@ -9,7 +9,7 @@ import { ValidateFlexService } from '../../services/validate-flex.service'
 })
 export class ConsolePageComponent implements OnInit {
   actions: Subject<string> = new Subject<string>()
-  status: string = 'OK'
+  status: any = 'OK'
 
   data: any = {
     "type": "carousel",
@@ -739,19 +739,18 @@ export class ConsolePageComponent implements OnInit {
       switch(this.data.type) {
         case 'carousel':
           this.validateFlexService.instanceOfCarouselContainer(this.data)
-          this.status = this.validateFlexService.jsonValidate.message.length > 0 ? this.validateFlexService.jsonValidate.message : 'OK'
+          this.status = this.validateFlexService.jsonValidate.message.length > 0 ? this.validateFlexService.jsonValidate : 'OK'
           break
         case 'bubble':
           this.validateFlexService.instanceOfBubbleContainer(this.data)
-          this.status = this.validateFlexService.jsonValidate.message.length > 0 ? this.validateFlexService.jsonValidate.message : 'OK'
+          this.status = this.validateFlexService.jsonValidate.message.length > 0 ? this.validateFlexService.jsonValidate : 'OK'
           break
         default:
-          this.status = 'invalid property'
+          this.status = { property: '', message: 'invalid property' }
       }
     }
     if(!$e) {
-      console.log('JSON syntax Error')
-      this.status = 'JSON syntax Error'
+      this.status = { property: '', message: 'JSON syntax Error' }
     }
   }
 }

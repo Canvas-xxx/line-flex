@@ -6,7 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./flex-status.component.css']
 })
 export class FlexStatusComponent implements OnInit {
-  @Input() status: string
+  @Input() status: any
 
   constructor() { }
 

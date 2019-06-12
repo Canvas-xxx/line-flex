@@ -7,5 +7,5 @@
 </ng-template>
 
 <ng-template #error>
-  <div class="failCont">{{ status }}</div>
+  <div class="failCont"><B>{{ status.property }}</B>{{ status.property.length > 0 ? ' ' : '' }}{{ status.message }}</div>
 </ng-template>
