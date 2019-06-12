@@ -24,6 +24,11 @@ export class ValidateFlexService {
 
   constructor() { }
 
+  private colorHexValidation = (color: string): boolean => {
+    const colorTest = new RegExp('^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$', 'igm')
+    return colorTest.test(color)
+  }
+
   instanceOfTextComponent = (object: any): object is TextComponent => {
     this.jsonValidate.message = 'type: invalid property'
     if(!('type' in object) || typeof object.type !== 'string' || object.type !== 'text') { return false }
@@ -46,7 +51,7 @@ export class ValidateFlexService {
     this.jsonValidate.message = 'weight: invalid property'
     if('weight' in object && this.weightValues.indexOf(object.weight) === -1 ) { return false }
     this.jsonValidate.message = 'color: invalid property'
-    if('color' in object && typeof object.color !== 'string' ) { return false }
+    if('color' in object && (typeof object.color !== 'string' || !this.colorHexValidation(object.color))) { return false }
     if(Object.keys(object).some(key => {
       if(Object.keys(new TextComponent()).indexOf(key) === -1) {
         this.jsonValidate.message = `${key} unknown field`
@@ -70,7 +75,7 @@ export class ValidateFlexService {
     this.jsonValidate.message = 'style: invalid property'
     if('style' in object && this.styleValues.indexOf(object.style) === -1 ) { return false }
     this.jsonValidate.message = 'color: invalid property'
-    if('color' in object && typeof object.color !== 'string' ) { return false }
+    if('color' in object && (typeof object.color !== 'string' || !this.colorHexValidation(object.color)) ) { return false }
     this.jsonValidate.message = 'gravity: invalid property'
     if('gravity' in object && this.gravityValues.indexOf(object.gravity) === -1 ) { return false }
     if(Object.keys(object).some(key => {
@@ -126,7 +131,7 @@ export class ValidateFlexService {
     this.jsonValidate.message = 'aspectMode: invalid property'
     if('aspectMode' in object && this.aspectModeValues.indexOf(object.aspectMode) === -1 ) { return false }
     this.jsonValidate.message = 'backgroundColor: invalid property'
-    if('backgroundColor' in object && typeof object.backgroundColor !== 'string' ) { return false }
+    if('backgroundColor' in object && (typeof object.backgroundColor !== 'string' || !this.colorHexValidation(object.backgroundColor)) ) { return false }
     if(Object.keys(object).some(key => {
       if(Object.keys(new ImageComponent()).indexOf(key) === -1) {
         this.jsonValidate.message = `${key} unknown field`
@@ -158,7 +163,7 @@ export class ValidateFlexService {
     this.jsonValidate.message = 'margin: invalid property'
     if('margin' in object && this.marginValues.indexOf(object.margin) === -1 ) { return false }
     this.jsonValidate.message = 'color: invalid property'
-    if('color' in object && typeof object.color !== 'string' ) { return false }
+    if('color' in object && (typeof object.color !== 'string' || !this.colorHexValidation(object.color)) ) { return false }
     if(Object.keys(object).some(key => {
       if(Object.keys(new SeparatorComponent()).indexOf(key) === -1) {
         this.jsonValidate.message = `${key} unknown field`
@@ -215,11 +220,11 @@ export class ValidateFlexService {
 
   instanceOfBlockStyle = (object: any): object is BlockStyle => {
     this.jsonValidate.message = 'backgroundColor: invalid property'
-    if('backgroundColor' in object && typeof object.backgroundColor !== 'string' ) { return false }
+    if('backgroundColor' in object && (typeof object.backgroundColor !== 'string' || !this.colorHexValidation(object.backgroundColor)) ) { return false }
     this.jsonValidate.message = 'separator: invalid property'
     if('separator' in object && typeof object.separator !== 'boolean' ) { return false }
     this.jsonValidate.message = 'separatorColor: invalid property'
-    if('separatorColor' in object && typeof object.separatorColor !== 'string' ) { return false }
+    if('separatorColor' in object && (typeof object.separatorColor !== 'string' || !this.colorHexValidation(object.separatorColor)) ) { return false }
     if(Object.keys(object).some(key => {
       if(Object.keys(new BlockStyle()).indexOf(key) === -1) {
         this.jsonValidate.message = `${key} unknown field`
