@@ -49,6 +49,10 @@ body {
     margin-left: 0;
 }
 
+.ExLNone {
+    margin-left: 0 !important;
+}
+
 .ExLXs {
     margin-left: 2px !important;
 }
@@ -71,6 +75,10 @@ body {
 
 .ExLXXl {
     margin-left: 20px !important;
+}
+
+.ExTNone {
+    margin-top: 0 !important;
 }
 
 .ExTXs {

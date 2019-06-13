@@ -77,15 +77,20 @@
 
 <ng-template #box let-type="type" let-layout="layout" let-contents="contents" let-flex="flex" let-spacing="spacing" let-margin="margin" let-parentLayout="parentLayout">
   <div class="MdBx" 
-    [ngClass]="{'vr': layout === 'vertical', 'hr': layout === 'horizontal' || layout === 'baseline', 'bl': layout === 'baseline',
+    [ngClass]="{'fl0': flex === 0, 'fl1': flex === 1, 'fl2': flex === 2, 'fl3': flex === 3,
+      'vr': layout === 'vertical', 'hr': layout === 'horizontal' || layout === 'baseline', 'bl': layout === 'baseline',
       'spcXs': spacing === 'xs', 'spcSm': spacing === 'sm', 'spcMd': spacing === 'md',
       'spcLg': spacing === 'lg', 'spcXl': spacing === 'xl', 'spcXXl': spacing === 'xxl',
+      'ExLNone': margin === 'none' && ((parentLayout ? parentLayout : layout) === 'horizontal' || (parentLayout ? parentLayout : layout) === 'baseline'),
+      'ExTNone': margin === 'none' && (parentLayout ? parentLayout : layout) === 'vertical',
       'ExLXs': margin === 'xs' && ((parentLayout ? parentLayout : layout) === 'horizontal' || (parentLayout ? parentLayout : layout) === 'baseline'), 'ExLSm': margin === 'sm' && ((parentLayout ? parentLayout : layout) === 'horizontal' || (parentLayout ? parentLayout : layout) === 'baseline'),
       'ExLMd': margin === 'md' && ((parentLayout ? parentLayout : layout) === 'horizontal' || (parentLayout ? parentLayout : layout) === 'baseline'), 'ExLLg': margin === 'lg' && ((parentLayout ? parentLayout : layout) === 'horizontal' || (parentLayout ? parentLayout : layout) === 'baseline'),
       'ExLXl': margin === 'xl' && ((parentLayout ? parentLayout : layout) === 'horizontal' || (parentLayout ? parentLayout : layout) === 'baseline'), 'ExLXXl': margin === 'xxl' && ((parentLayout ? parentLayout : layout) === 'horizontal' || (parentLayout ? parentLayout : layout) === 'baseline'),
       'ExTXs': margin === 'xs' && (parentLayout ? parentLayout : layout) === 'vertical', 'ExTSm': margin === 'sm' && (parentLayout ? parentLayout : layout) === 'vertical',
       'ExTMd': margin === 'md' && (parentLayout ? parentLayout : layout) === 'vertical', 'ExTLg': margin === 'lg' && (parentLayout ? parentLayout : layout) === 'vertical',
-      'ExTXl': margin === 'xl' && (parentLayout ? parentLayout : layout) === 'vertical', 'ExTXXl': margin === 'xxl' && (parentLayout ? parentLayout : layout) === 'vertical'}">
+      'ExTXl': margin === 'xl' && (parentLayout ? parentLayout : layout) === 'vertical', 'ExTXXl': margin === 'xxl' && (parentLayout ? parentLayout : layout) === 'vertical'}"
+    [ngStyle]="{'flex': flex >= 4 ? flex + ' ' + flex + ' auto' : null,
+      '-webkit-box-flex': flex >= 4 ? flex : null}">
     <ng-container *ngFor="let content of contents">
       <ng-container *ngTemplateOutlet="content.type === 'box' ? box : contentTemplate; context: combineContent(content, layout)"></ng-container>
     </ng-container>
@@ -112,11 +117,13 @@ let-align="align" let-maxLines="maxLines" let-margin="margin" let-action="action
     [ngClass]="{'fl0': flex === 0,
       'fl1': flex === 1, 'fl2': flex === 2,
       'fl3': flex === 3, 'ExXXs': size === 'xxs', 'ExXs': size === 'xs',
-      'ExSm': size === 'sm', 'ExMd': size === 'md',
+      'ExSm': size === 'sm', 'ExMd': size === 'md' || !size,
       'ExLg': size === 'lg', 'ExXl': size === 'xl',
       'ExXXl': size === 'xxl', 'ExWB': weight === 'bold',
       'grvC': gravity === 'center', 'grvB': gravity === 'bottom',
       'ExWrap': wrap, 'ExAlgC': align === 'center', 'ExAlgE': align === 'end',
+      'ExLNone': margin === 'none' && (layout === 'horizontal' || layout === 'baseline'),
+      'ExTNone': margin === 'none' && layout === 'vertical',
       'ExLXs': margin === 'xs' && (layout === 'horizontal' || layout === 'baseline'), 'ExLSm': margin === 'sm' && (layout === 'horizontal' || layout === 'baseline'),
       'ExLMd': (margin === 'md' && (layout === 'horizontal' || layout === 'baseline')) || (!margin && (layout === 'horizontal' || layout === 'baseline')), 'ExLLg': margin === 'lg' && (layout === 'horizontal' || layout === 'baseline'),
       'ExLXl': margin === 'xl' && (layout === 'horizontal' || layout === 'baseline'), 'ExLXXl': margin === 'xxl' && (layout === 'horizontal' || layout === 'baseline'),
@@ -136,10 +143,12 @@ let-align="align" let-maxLines="maxLines" let-margin="margin" let-action="action
     [ngClass]="{'ExFull': size === 'full', 'Ex5Xl': size === '5xl',
       'Ex4Xl': size === '4xl', 'Ex3Xl': size === '3xl',
       'ExXXl': size === 'xxl', 'ExXl': size === 'xl',
-      'ExLg': size === 'lg',  'ExMd': size === 'md',
+      'ExLg': size === 'lg',  'ExMd': size === 'md' || !size,
       'ExSm': size === 'sm', 'ExXs': size === 'xs', 'ExXXs': size === 'xxs',
       'grvC': gravity === 'center', 'grvB': gravity === 'bottom',
       'algS': align === 'start', 'algE': align === 'end',
+      'ExLNone': margin === 'none' && (layout === 'horizontal' || layout === 'baseline'),
+      'ExTNone': margin === 'none' && layout === 'vertical',
       'ExLXs': margin === 'xs' && (layout === 'horizontal' || layout === 'baseline'), 'ExLSm': margin === 'sm' && (layout === 'horizontal' || layout === 'baseline'),
       'ExLMd': margin === 'md' && (layout === 'horizontal' || layout === 'baseline'), 'ExLLg': margin === 'lg' && (layout === 'horizontal' || layout === 'baseline'),
       'ExLXl': margin === 'xl' && (layout === 'horizontal' || layout === 'baseline'), 'ExLXXl': margin === 'xxl' && (layout === 'horizontal' || layout === 'baseline'),
@@ -148,7 +157,9 @@ let-align="align" let-maxLines="maxLines" let-margin="margin" let-action="action
       'ExTXl': margin === 'xl' && layout === 'vertical', 'ExTXXl': margin === 'xxl' && layout === 'vertical',
       'fl0': flex === 0, 'fl1': flex === 1,
       'fl2': flex === 2, 'fl3': flex === 3,
-      'ExFit': aspectMode === 'fit' || !aspectMode, 'ExCover': aspectMode === 'cover'}">
+      'ExFit': aspectMode === 'fit' || !aspectMode, 'ExCover': aspectMode === 'cover'}"
+    [ngStyle]="{'flex': flex >= 4 ? flex + ' ' + flex + ' auto' : null,
+      '-webkit-box-flex': flex >= 4 ? flex : null}">
     <div>
       <a [ngStyle]="{'padding-bottom': aspectRatio ? aspectRatioCalculate(aspectRatio) : '100%'}">
         <span [ngStyle]="{'background-image': 'url(' + url + ')', 'background-color': backgroundColor ? backgroundColor : null}"></span>
@@ -164,6 +175,8 @@ let-align="align" let-maxLines="maxLines" let-margin="margin" let-action="action
       'grvC': gravity === 'center', 'grvB': gravity === 'bottom', 
       'fl0': flex === 0, 'fl1': flex === 1,
       'fl2': flex === 2, 'fl3': flex === 3,
+      'ExLNone': margin === 'none' && (layout === 'horizontal' || layout === 'baseline'),
+      'ExTNone': margin === 'none' && layout === 'vertical',
       'ExLXs': margin === 'xs' && (layout === 'horizontal' || layout === 'baseline'), 'ExLSm': margin === 'sm' && (layout === 'horizontal' || layout === 'baseline'),
       'ExLMd': margin === 'md' && (layout === 'horizontal' || layout === 'baseline'), 'ExLLg': margin === 'lg' && (layout === 'horizontal' || layout === 'baseline'),
       'ExLXl': margin === 'xl' && (layout === 'horizontal' || layout === 'baseline'), 'ExLXXl': margin === 'xxl' && (layout === 'horizontal' || layout === 'baseline'),
@@ -184,7 +197,7 @@ let-align="align" let-maxLines="maxLines" let-margin="margin" let-action="action
     [ngClass]="{'ExXXs': size === 'xxs', 'Ex5Xl': size === '5xl',
       'Ex4Xl': size === '4xl', 'Ex3Xl': size === '3xl',
       'ExXXl': size === 'xxl', 'ExXl': size === 'xl',
-      'ExLg': size === 'lg',  'ExMd': size === 'md',
+      'ExLg': size === 'lg',  'ExMd': size === 'md' || !size,
       'ExSm': size === 'sm', 'ExXs': size === 'xs'}">
     <div>
       <span [ngStyle]="{'background-image': 'url(' + url + ')'}"></span>
@@ -194,7 +207,9 @@ let-align="align" let-maxLines="maxLines" let-margin="margin" let-action="action
 
 <ng-template #separatorComponent let-margin="margin" let-color="color" let-layout="layout">
   <div class="fl0 MdSep"
-    [ngClass]="{'ExLXs': margin === 'xs' && (layout === 'horizontal' || layout === 'baseline'), 'ExLSm': margin === 'sm' && (layout === 'horizontal' || layout === 'baseline'),
+    [ngClass]="{'ExLNone': margin === 'none' && (layout === 'horizontal' || layout === 'baseline'),
+      'ExTNone': margin === 'none' && layout === 'vertical',
+      'ExLXs': margin === 'xs' && (layout === 'horizontal' || layout === 'baseline'), 'ExLSm': margin === 'sm' && (layout === 'horizontal' || layout === 'baseline'),
       'ExLMd': margin === 'md' && (layout === 'horizontal' || layout === 'baseline'), 'ExLLg': margin === 'lg' && (layout === 'horizontal' || layout === 'baseline'),
       'ExLXl': margin === 'xl' && (layout === 'horizontal' || layout === 'baseline'), 'ExLXXl': margin === 'xxl' && (layout === 'horizontal' || layout === 'baseline'),
       'ExTXs': margin === 'xs' && layout === 'vertical', 'ExTSm': margin === 'sm' && layout === 'vertical',
