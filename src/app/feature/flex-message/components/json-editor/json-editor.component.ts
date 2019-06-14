@@ -8,7 +8,7 @@ import { Subject } from 'rxjs';
   styleUrls: ['./json-editor.component.css']
 })
 export class JsonEditorComponent implements OnInit {
-  @ViewChild('editor') editor: JsonComponent
+  @ViewChild('editor', { static: true }) editor: JsonComponent
 
   @Input() data: object
   @Input() actions: Subject<string> = new Subject<string>()

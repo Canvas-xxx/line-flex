@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {  } from './feature/flex-message/flex-message.module'
 
 const routes: Routes = [
-  { path: 'flex', loadChildren: './feature/flex-message/flex-message.module#FlexMessageModule' },
+  { path: 'flex', loadChildren: () => import('./feature/flex-message/flex-message.module').then(m => m.FlexMessageModule) },
   { path: '**', redirectTo: 'flex' }
 ];
 
